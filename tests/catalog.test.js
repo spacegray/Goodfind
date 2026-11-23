@@ -1,0 +1,15 @@
+const assert=require('node:assert/strict');
+require('../dist/catalog.js');
+const {catalog,search,groupByStore}=globalThis.GoodfindCatalog;
+assert.equal(catalog.length,11);
+assert.ok(search(catalog,'Cropped fitted leather jacket size small').some(p=>p.id==='jacket-p'));
+assert.ok(search(catalog,'Grace & Stella energizing eye pads').some(p=>p.id==='eye-t'));
+assert.ok(search(catalog,'Black cotton fitted top size small').some(p=>p.id==='panties-n'));
+assert.ok(search(catalog,'set of black warm boot socks').some(p=>p.id==='socks-t'));
+assert.ok(search(catalog,'Black platform pumps size 7').some(p=>p.id==='pumps-d'));
+assert.equal(search(catalog,'impossible-unicorn-thermometer').length,0);
+assert.equal(search(catalog,'').length,catalog.length);
+assert.equal(groupByStore(catalog).Amazon.length,3);
+assert.deepEqual(groupByStore([]),{});
+assert.ok(catalog.every(p=>p.link.startsWith('https://') && p.price>0));
+console.log('Catalog search and retailer grouping checks passed');
