@@ -45,3 +45,16 @@
 @media(max-width:800px){
   .hero{background-position:75% top}
 }
+
+/* Align hero content with the centered page grid at every desktop width. */
+@media (min-width:801px){
+  .hero{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .hero-copy{min-width:0;padding-left:max(5vw,calc((100vw - 1320px)/2));padding-right:clamp(24px,3vw,48px)}
+  .hero-copy h1{max-width:640px;overflow-wrap:normal}
+  .hero-copy .hero-desc,.hero-copy .search{max-width:480px}
+}
+@media (max-width:800px){
+  .hero-copy{min-width:0;padding-left:5%;padding-right:5%}
+  .hero-copy .search{width:min(100%,480px);min-width:0}
+  .hero-copy .search input{min-width:0}
+}
