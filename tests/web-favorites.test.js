@@ -1,0 +1,13 @@
+const assert=require('node:assert/strict');
+require('../dist/web-favorites.js');
+const {normalize,searchQuery}=globalThis.GoodfindWeb;
+assert.equal(searchQuery('linen shirt','women'),"women's linen shirt");
+assert.equal(searchQuery('boots','men'),"men's boots");
+assert.equal(searchQuery('eye mask','all'),'eye mask');
+assert.equal(normalize({}),null);
+const bad=normalize({title:'Example',link:'javascript:alert(1)',image:'javascript:alert(1)'});
+assert.equal(bad.link,'');assert.equal(bad.image,'');
+const product=normalize({title:'Jacket',store:'Example',link:'https://example.com/item',price:'$25'});
+assert.equal(product.link,'https://example.com/item');assert.equal(product.price,'$25');
+assert.equal(normalize({title:'Jacket',store:'Example',link:'https://example.com/item'}).id,product.id);
+console.log('Web result normalization and search preferences checks passed');

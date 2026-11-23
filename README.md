@@ -19,10 +19,10 @@ The catalog, prices, ratings, sizes, delivery estimates, and retailer listings i
 ## ✨ Current features
 
 - **Discover:** Browse sample fashion, beauty, home, and accessory listings; filter by category or retailer; sort the demo catalog.
-- **Search:** Find sample catalog matches from the main search or from an individual shopping-list item. When configured, the search also requests Google Shopping results via SerpApi and displays them in the page.
+- **Search:** Find sample catalog matches from the main search or from an individual shopping-list item. When configured, the search also requests Google Shopping results via SerpApi and displays them in the page. Choose women, men, or everyone to refine the live search query. Sample catalog results are not gender classified.
 - **Compare:** Select up to three sample listings and compare their available details. Unknown values remain labeled as unknown.
 - **Shopping lists:** Add multiple items, mark items complete, search for matches, expand the list into a modal, and save named list snapshots in the browser.
-- **Favorites and collections:** Save sample products, create and manage collections, and view saved products grouped by retailer with sample subtotals.
+- **Favorites and collections:** Save sample products and web results, create and manage sample-product collections, and view saved products grouped by retailer with sample subtotals. Saved web details reflect the time they were saved and may become outdated.
 - **Outfit studio:** Add pieces, preview their images together, and save the look as a collection.
 - **Preferences:** Choose a shopping priority and interests. A single demo profile is stored locally in SQLite, and the demo feed gives selected categories priority.
 - **Responsive interface:** A mobile-friendly layout, keyboard-accessible controls, and reduced-motion support.
@@ -134,6 +134,7 @@ Goodfind/
     style.css             Responsive styles and animation
     app.js                Interface and local state
     catalog.js            Sample listings and matching
+    web-favorites.js      Web listing validation and search preferences
     assets/               Hero and sample product images
   server.py               Local server, profile, and search proxy
   tests/                  Catalog and server checks
@@ -144,6 +145,7 @@ Goodfind/
 
 ```bash
 node tests/catalog.test.js
+node tests/web-favorites.test.js
 python3 -B -m unittest discover -s tests -p 'test_*.py'
 node --check dist/app.js
 ```
